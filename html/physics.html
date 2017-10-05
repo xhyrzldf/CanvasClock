@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas physics</title>
+</head>
+<body>
+<canvas id="canvas" style="border: 1px solid aqua;display: block;margin: 50px auto;">
+    当前浏览器不支持canvas!请更换浏览器试一试
+</canvas>
+<script>
+    var ball = {x:512,y:100,r:20,g:1,vx:-2,vy:-10,color:"#74ce86"};
+
+    window.onload = function () {
+        var canvas = document.getElementById("canvas");
+
+        canvas.width = 1024;
+        canvas.height = 768;
+
+        var context = canvas.getContext("2d");
+
+        setInterval(
+            function () {
+                render(context);
+                update();
+            },
+            50
+        )
+
+    };
+
+    function update() {
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+        ball.vy += ball.g;
+
+        /* 下边缘碰撞检测 */
+        if (ball.y >= 768 - ball.r) {
+            ball.y = 768 - ball.r;
+            ball.vy = - ball.vy*0.618;
+        }
+
+/*        /!* 上边缘碰撞检测 *!/
+        if (ball.y <= ball.r) {
+            ball.y = ball.r;
+            ball.vy = - ball.vy;
+        }
+
+        /!* 左边缘碰撞检测 *!/
+        if (ball.x <= ball.r) {
+            ball.x = ball.r;
+            ball.vx = - ball.vx;
+        }
+
+        /!* 右边缘碰撞检测 *!/
+        if (ball.x >= 1024 - ball.r) {
+            ball.x = 1024 - ball.r;
+            ball.vx = - ball.vx;
+        }*/
+
+    }
+
+    function render(cxt) {
+        cxt.clearRect(0,0,cxt.canvas.width,cxt.canvas.height);
+
+        cxt.fillStyle = ball.color;
+        cxt.beginPath();
+        cxt.arc(ball.x,ball.y,ball.r,0,2*Math.PI);
+        cxt.closePath();
+
+        cxt.fill();
+    }
+</script>
+</body>
+</html>

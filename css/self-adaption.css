@@ -1,0 +1,13 @@
+/* 一些自适应的style,让屏幕填充满并且没有滚动条 */
+html, body, canvas {
+    margin: 0;
+    padding: 0;
+}
+
+canvas {
+    display: block;
+}
+
+html, body {
+    height: 93%;
+}
