@@ -8,6 +8,7 @@ var MARGIN_LEFT = 30;
 var curShowTimeSeconds = 0;
 
 var balls = [];
+// noinspection JSUnusedGlobalSymbols
 const colors = ['#33B5E5', '#0099cc', '#aa66cc', '#9933cc', '#669900', '#ffbb33', '#ff8800', '#ff4444', '#e6e837', '#6bdad5'];
 
 window.onload = function () {
@@ -43,7 +44,9 @@ window.onload = function () {
 function getCurrentShowTimeSeconds() {
     var curTime = new Date();
 
-/*  这里是倒计时代码 , 下面是时钟效果
+/*
+    注释
+    这里是倒计时代码 , 下面是时钟效果
     var ret = endTime.getTime() - curTime.getTime();
     ret = Math.round(ret / 1000);*/
 
@@ -111,9 +114,9 @@ function updateBalls() {
 
     /* 控制小球的数量 */
     var count = 0;
-    for (var i = 0; i < balls.length; i++) {
-        if (balls[i].x + RADIUS > 0 && balls[i].x - RADIUS < WINDOW_WIDTH)
-            balls[count++] = balls[i];
+    for (var k = 0; k < balls.length; k++) {
+        if (balls[k].x + RADIUS > 0 && balls[k].x - RADIUS < WINDOW_WIDTH)
+            balls[count++] = balls[k];
     }
     while (balls.length > count) {
         balls.pop();
